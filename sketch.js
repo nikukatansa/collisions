@@ -56,10 +56,10 @@ function draw() {
     var particle = particles[i];
     particle.pos.x = particle.nextpos.x;
     particle.pos.y = particle.nextpos.y;
-    if (particle.pos.x > width - particle.radius)  { particle.velocity.x = -particle.velocity.x; }
-    if (particle.pos.x < particle.radius)          { particle.velocity.x = -particle.velocity.x; }
-    if (particle.pos.y > height - particle.radius) { particle.velocity.y = -particle.velocity.y; }
-    if (particle.pos.y < particle.radius)          { particle.velocity.y = -particle.velocity.y; }
+    if (particle.pos.x > width - particle.radius)  { particle.velocity.x = -abs(particle.velocity.x); }
+    if (particle.pos.x < particle.radius)          { particle.velocity.x = abs(particle.velocity.x); }
+    if (particle.pos.y > height - particle.radius) { particle.velocity.y = -abs(particle.velocity.y); }
+    if (particle.pos.y < particle.radius)          { particle.velocity.y = abs(particle.velocity.y); }
   }
     
 }
@@ -86,5 +86,5 @@ function Particle(radius) {
   this.pos = createVector(random(radius, width-radius), random(radius, height-radius));
   this.nextpos = createVector(this.pos.x, this.pos.y);
   this.velocity = createVector(random(-5, 5), random(-5, 5));
-  this.pcolor = color(random(255), random(255), random(255), 255);
+  this.pcolor = color(random(51,255), random(51,255), random(51,255), 255);
 }
